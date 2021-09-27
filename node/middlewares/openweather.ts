@@ -1,19 +1,19 @@
 export async function openweather(ctx: Context, next: () => Promise<any>) {
   const {
-    query: { city: city },
+    query: { location: location, units: units },
     clients: { openweather: openWeatherClient },
   } = ctx
 
-  console.info('Received city:', city)
+  console.info('Received location:', location)
 
-  const openWeatherResponse = await openWeatherClient.getCurrentWeather(city)
+  const openWeatherResponse = await openWeatherClient.getCurrentWeather(location,units)
 
   console.info('OpenWeather response:', openWeatherResponse)
 
   const {
     headers,
     data
-  } = await openWeatherClient.getCurrentWeatherWithHeaders(city)
+  } = await openWeatherClient.getCurrentWeatherWithHeaders(location,units)
 
   console.info('OpenWeather headers', headers)
   console.info('OpenWeather data:', data)
