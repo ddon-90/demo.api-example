@@ -1,9 +1,9 @@
 {
-  "name": "service-example",
+  "name": "openweather-api",
   "vendor": "vtex",
-  "version": "0.2.0",
-  "title": "Service Example",
-  "description": "Reference app for VTEX IO Services",
+  "version": "0.0.0",
+  "title": "OpenWeather API",
+  "description": "OpenWeather API built on VTEX IO",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
   "dependencies": {},
@@ -19,7 +19,7 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "httpstat.us",
+        "host": "api.openweathermap.org",
         "path": "*"
       }
     },
