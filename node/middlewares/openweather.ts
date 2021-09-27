@@ -4,21 +4,17 @@ export async function openweather(ctx: Context, next: () => Promise<any>) {
     clients: { openweather: openWeatherClient },
   } = ctx
 
-  console.info('Received location:', location)
+  // console.info('Received location:', location)
+  // const openWeatherResponse = await openWeatherClient.getCurrentWeather(location,units)
+  // console.info('OpenWeather response:', openWeatherResponse)
 
-  const openWeatherResponse = await openWeatherClient.getCurrentWeather(location,units)
+  const { headers, data } = await openWeatherClient.getCurrentWeatherWithHeaders(location,units)
 
-  console.info('OpenWeather response:', openWeatherResponse)
+  console.info('OpenWeather Headers:', headers)
+  console.info('OpenWeather Data:', data)
+  console.info('VTEX Context:', ctx)
 
-  const {
-    headers,
-    data
-  } = await openWeatherClient.getCurrentWeatherWithHeaders(location,units)
-
-  console.info('OpenWeather headers', headers)
-  console.info('OpenWeather data:', data)
-  console.info('OpenWeather Context:', ctx)
-
+  ctx.status = 200
   ctx.body = data
   ctx.set('Cache-Control', headers['cache-control'])
 
