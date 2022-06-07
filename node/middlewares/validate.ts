@@ -1,16 +1,20 @@
-import { UserInputError } from '@vtex/api'
+// import { UserInputError } from '@vtex/api'
 
 export async function validate(ctx: Context, next: () => Promise<any>) {
+
+  console.info(ctx)
   
-  console.info('Received params:', ctx.query)
+  /* Here you can validate the api request
 
-  const { location } = ctx.query
+  Example:
 
-  if (!location) {
-    // You can call by city name or city name, state code and country code {city name},{state code},{country code}.
-    // Please note that searching by states available only for the USA locations.
+  const { param } = ctx.query
+
+
+  if (param == null) {
     throw new UserInputError('Parameter location is required. Example: location=London,GB')
   }
+  */
 
   await next()
 }

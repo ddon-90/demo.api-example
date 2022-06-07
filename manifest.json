@@ -1,9 +1,9 @@
 {
-  "name": "openweather-api",
-  "vendor": "vtex",
-  "version": "0.0.0",
-  "title": "OpenWeather API",
-  "description": "OpenWeather API built on VTEX IO",
+  "name": "api-example",
+  "vendor": "obi",
+  "version": "0.0.1",
+  "title": "Jsonplaceholder API",
+  "description": "Jsonplaceholder API built on VTEX IO",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
   "dependencies": {},
@@ -19,7 +19,7 @@
     {
       "name": "outbound-access",
       "attrs": {
-        "host": "api.openweathermap.org",
+        "host": "jsonplaceholder.typicode.com",
         "path": "*"
       }
     },

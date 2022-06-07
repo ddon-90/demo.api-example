@@ -2,7 +2,7 @@ import type { ClientsConfig, ServiceContext, RecorderState } from '@vtex/api'
 import { LRUCache, method, Service } from '@vtex/api'
 
 import { Clients } from './clients'
-import { openweather } from './middlewares/openweather'
+import { postsMiddleware, postByIdMiddleware, usersMiddleware } from './middlewares/jsonplaceholder'
 import { validate } from './middlewares/validate'
 
 const TIMEOUT_MS = 800
@@ -11,7 +11,7 @@ const TIMEOUT_MS = 800
 // The @vtex/api HttpClient respects Cache-Control headers and uses the provided cache.
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
-metrics.trackCache('openweather', memoryCache)
+metrics.trackCache('jsonplaceholder', memoryCache)
 
 // This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {
@@ -24,9 +24,9 @@ const clients: ClientsConfig<Clients> = {
       timeout: TIMEOUT_MS,
     },
     // This key will be merged with the default options and add this cache to our OpenWeather client.
-    openweather: {
+    jsonplaceholder: {
       memoryCache,
-    },
+    }
   },
 }
 
@@ -36,7 +36,7 @@ declare global {
 
   // The shape of our State object found in `ctx.state`. This is used as state bag to communicate between middlewares.
   interface State extends RecorderState {
-    location: string
+    id: string
   }
 }
 
@@ -45,8 +45,14 @@ export default new Service({
   clients,
   routes: {
     // `openweather` is the route ID from service.json. It maps to an array of middlewares (or a single handler).
-    openweather: method({
-      GET: [validate, openweather],
+    posts: method({
+      GET: [validate, postsMiddleware],
+    }),
+    postById: method({
+      GET: [validate, postByIdMiddleware],
+    }),
+    users: method({
+      GET: [validate, usersMiddleware],
     }),
   },
 })
