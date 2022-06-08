@@ -1,6 +1,5 @@
 export async function postsMiddleware(ctx: Context, next: () => Promise<any>) {
   const {
-    // query: { location: location, units: units },
     clients: { jsonplaceholder: jsonplaceholderClient },
   } = ctx
 
@@ -34,7 +33,6 @@ export async function postByIdMiddleware(ctx: Context, next: () => Promise<any>)
 
 export async function usersMiddleware(ctx: Context, next: () => Promise<any>) {
   const {
-    // query: { location: location, units: units },
     clients: { jsonplaceholder: jsonplaceholderClient },
   } = ctx
 

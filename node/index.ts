@@ -7,7 +7,7 @@ import { validate } from './middlewares/validate'
 
 const TIMEOUT_MS = 800
 
-// Create a LRU memory cache for the OpenWeather client.
+// Create a LRU memory cache.
 // The @vtex/api HttpClient respects Cache-Control headers and uses the provided cache.
 const memoryCache = new LRUCache<string, any>({ max: 5000 })
 
@@ -15,7 +15,7 @@ metrics.trackCache('jsonplaceholder', memoryCache)
 
 // This is the configuration for clients available in `ctx.clients`.
 const clients: ClientsConfig<Clients> = {
-  // We pass our custom implementation of the clients bag, containing the OpenWeather client.
+  // We pass our custom implementation of the clients bag, containing the Jsonplaceholder client.
   implementation: Clients,
   options: {
     // All IO Clients will be initialized with these options, unless otherwise specified.
@@ -23,7 +23,7 @@ const clients: ClientsConfig<Clients> = {
       retries: 2,
       timeout: TIMEOUT_MS,
     },
-    // This key will be merged with the default options and add this cache to our OpenWeather client.
+    // This key will be merged with the default options and add this cache to our Jsonplaceholder client.
     jsonplaceholder: {
       memoryCache,
     }

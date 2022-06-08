@@ -12,7 +12,7 @@ export async function validate(ctx: Context, next: () => Promise<any>) {
 
 
   if (param == null) {
-    throw new UserInputError('Parameter location is required. Example: location=London,GB')
+    throw new UserInputError('Parameter xxxx is required.')
   }
   */
 
