@@ -1,9 +1,9 @@
 {
   "name": "api-example",
-  "vendor": "obi",
+  "vendor": "{{account}}",
   "version": "0.0.1",
-  "title": "Jsonplaceholder API",
-  "description": "Jsonplaceholder API built on VTEX IO",
+  "title": "API Example",
+  "description": "Example of new REST APIs built on top of VTEX IO.",
   "mustUpdateAt": "2018-01-04",
   "categories": [],
   "dependencies": {},
